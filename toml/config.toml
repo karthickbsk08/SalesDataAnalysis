@@ -1,0 +1,4 @@
+RefreshPeriod="20"
+
+RateLimitReqPerSecond="100"
+RateLimitInitialBurstReqCount="100"

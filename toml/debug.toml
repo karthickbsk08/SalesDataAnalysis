@@ -1,0 +1,26 @@
+# 0 -> to print only errors
+# 1 -> to print errors and program and in & out
+# 2 -> to print errors, program and in & out and additional details
+
+LogCategory = "2"
+
+# Value to set reference to verify the data and override the reference setted in program 
+LogReference = ""
+
+# 0 -> to print log base64 encrypted data as "Base64 Encode File" string
+# 1 -> to print log base64 encrypted data as base64 encrypted data File
+Base64Encode="0"
+
+
+# Does log file need to create ?
+# 0 -> No
+# 1 -> Yes
+LogFileCreate="1"
+
+# Does log need to print in console ?
+# 0 -> No
+# 1 -> Yes
+PrintConsole="0"
+
+# base64 encode max string size
+Threshold="200"
