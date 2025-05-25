@@ -286,12 +286,12 @@ Below is a list of available API endpoints.
 	}
 ```
 
-### Automate the Cloning the Repo and Running the program through .bash file 
+# Automate the Cloning the Repo and Running the program through .bash file 
 
-# FileName : startprogram.sh 
-# Relative_FilePath : startprogram.sh
+## FileName : startprogram.sh 
+### Relative_FilePath : startprogram.sh
 
-# Steps to Run the Above bash file
+## Steps to Run the Above bash file
 
 - Download the `startprogram.sh` file to any directory and follow the steps below.
 
