@@ -288,10 +288,20 @@ Below is a list of available API endpoints.
 
 ### Automate the Cloning the Repo and Running the program through .bash file 
 
-# FileName : startprogram.sh
+# FileName : startprogram.sh 
+# Relative_FilePath : startprogram.sh
+
+# Steps to Run the Above bash file
+
+- Download the `startprogram.sh` file to any directory and follow the steps below.
+
+```bash
+chmod +x ./startprogram.sh
+
+./startprogram.sh
+
 ```
-Relative_FilePath : startprogram.sh 
-```
+
 
 - Validate TOML configuration to avoid parse errors.
 - Ensure database schema is always synchronized with app (especially log table columns).
