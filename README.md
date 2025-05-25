@@ -302,14 +302,20 @@ chmod +x ./startprogram.sh
 
 ```
 
+## All the Database Resouces available in following Directory
+
+### Relative_FilePath : 
+
+```bash
+- SalesDataAnalysis/dbfilecollection/Ecommerce - public.png
+- SalesDataAnalysis/dbfilecollection/salesdata.csv   
+- SalesDataAnalysis/dbfilecollection/tableddl.sql
+```
+### 📝 Notes
 
 - Validate TOML configuration to avoid parse errors.
 - Ensure database schema is always synchronized with app (especially log table columns).
 - API supports multiple indicator queries for flexible reporting.
 - Logging infrastructure designed to help identify root causes quickly.
-
-
-### 📝 Notes
-
 - All endpoints return JSON.
 - please change the toml file according to you requirement
