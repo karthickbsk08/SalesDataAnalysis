@@ -286,6 +286,13 @@ Below is a list of available API endpoints.
 	}
 ```
 
+### Automate the Cloning the Repo and Running the program through .bash file 
+
+# FileName : startprogram.sh
+```
+Relative_FilePath : startprogram.sh 
+```
+
 - Validate TOML configuration to avoid parse errors.
 - Ensure database schema is always synchronized with app (especially log table columns).
 - API supports multiple indicator queries for flexible reporting.
