@@ -1,6 +1,7 @@
 package apigate
 
 import (
+	"log"
 	"salesdataanalysis/dbconnection"
 	"salesdataanalysis/helpers"
 )
@@ -9,6 +10,7 @@ var ApiCallLogChannel chan<- ApiLogCapture
 
 // This method is used to initiate the channel for capture the logs
 func InitiateApiCallLog() chan<- ApiLogCapture {
+	log.Println("InitiateApiCallLog(+)")
 	LogRespChannel := make(chan ApiLogCapture, 100)
 	go func() {
 		count := 0

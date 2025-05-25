@@ -6,6 +6,7 @@ import (
 	"os"
 	"salesdataanalysis/apigate"
 	"salesdataanalysis/dbconnection"
+	"salesdataanalysis/errorcode"
 	"salesdataanalysis/handlers"
 	"salesdataanalysis/helpers"
 	"salesdataanalysis/refreshmechanism"
@@ -13,11 +14,6 @@ import (
 
 	"github.com/gorilla/mux"
 )
-
-// func greet(w http.ResponseWriter, r *http.Request) {
-// 	errorcode.RegisterError("Hello World!")
-// 	fmt.Fprintf(w, "Hello World! %s", time.Now())
-// }
 
 func main() {
 	lDebug := new(helpers.HelperStruct)
@@ -47,25 +43,26 @@ func main() {
 	lProceedValue, lAcceptValue := apigate.AssignRateLimitValue()
 
 	lRouter := mux.NewRouter()
-	// lRouter.HandleFunc("/", greet)
-	// lRouter.HandleFunc("/fetchlogascsv", errorcode.FetchLogCSV)
+
+	lRouter.HandleFunc("/fetchlogascsv", errorcode.FetchLogCSV)
 	lRouter.Handle("/customeranalysis", apigate.RateLimiter(handlers.ProvideCustomerAnalysis, lProceedValue, lAcceptValue))
+	lRouter.Handle("/revenuereport", apigate.RateLimiter(handlers.RevenueReportAPI, lProceedValue, lAcceptValue))
+	lRouter.Handle("/refreshDataOnDemand", apigate.RateLimiter(refreshmechanism.RefreshDataOnDemand, lProceedValue, lAcceptValue))
+	lHandler := apigate.RequestMiddleWare(lRouter)
 
 	// lRouter.HandleFunc("/uploadsalesdata")
 
-	// refreshmechanism.StartDailyRollover(lDebug)
+	refreshmechanism.StartDailyRollover(lDebug)
 
 	//Initiate Queue to process API Incoming and outgoing Log to this service
 	apigate.ApiCallLogChannel = apigate.InitiateApiCallLog()
 	refreshmechanism.LogChannel = refreshmechanism.InitiateRefreshDataCallLog()
 
-	apigate.RequestMiddleWare(lRouter)
-
 	lSrv := &http.Server{
 		ReadTimeout:  30 * time.Second,
 		WriteTimeout: 30 * time.Second,
 		IdleTimeout:  120 * time.Second,
-		Handler:      lRouter,
+		Handler:      lHandler,
 		Addr:         ":19998",
 	}
 	lDebug.ExitFunc()

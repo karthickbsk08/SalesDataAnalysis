@@ -2,6 +2,7 @@ package apigate
 
 import (
 	"context"
+	"encoding/json"
 	"io"
 	"log"
 	"net/http"
@@ -29,6 +30,7 @@ func RequestMiddleWare(next http.Handler) http.Handler {
 
 		lDebug := new(helpers.HelperStruct)
 		lDebug.Init()
+		lDebug.Log(helpers.Statement, "RequestMiddleWare(+)")
 
 		var lLogDetails ApiLogCapture
 		var capturewriter = ResponseCaptureWriter{ResponseWriter: w}
@@ -37,13 +39,13 @@ func RequestMiddleWare(next http.Handler) http.Handler {
 		// 1. Receive the incoming request
 		// 2. Parse request body (JSON, form-data, etc.)
 		lrequestDetails := GetRequestorDetail(r)
-		log.Println("lrequestDetails : ", lrequestDetails)
+		// log.Println("lrequestDetails : ", lrequestDetails)
 		r.Body = io.NopCloser(strings.NewReader(lrequestDetails.Body))
 
 		//Handle CORS (set Access-Control-Allow-* headers)
 		(w).Header().Set("Access-Control-Allow-Origin", "*")
 		(w).Header().Set("Access-Control-Allow-Credentials", "true")
-		(w).Header().Set("Access-Control-Allow-Methods", "GET,OPTIONS")
+		(w).Header().Set("Access-Control-Allow-Methods", "GET,POST,OPTIONS")
 		(w).Header().Set("Access-Control-Allow-Headers", "Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization")
 
 		if r.Method == http.MethodOptions {
@@ -79,7 +81,12 @@ func RequestMiddleWare(next http.Handler) http.Handler {
 		lLogDetails.ResponseStatus = int64(capturewriter.Status())
 		lLogDetails.PDebug = lDebug
 
+		lData, _ := json.Marshal(lLogDetails)
+		log.Println("DATA : ", string(lData))
+
 		ApiCallLogChannel <- lLogDetails
+		lDebug.Log(helpers.Statement, "RequestMiddleWare(-)")
 
 	})
+
 }
