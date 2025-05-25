@@ -66,12 +66,6 @@ Below is a list of available API endpoints.
 }
 ```
 
-
-
-
-
-
-
 ### ✅ Success Response Format `/revenuereport` 
 
 `Request Body`
@@ -132,6 +126,7 @@ Below is a list of available API endpoints.
 
 
 `MONTHLYTREND,YEARLYTREND,QUARTERLYTREND,TOTALREV,PRODUCTWISE,CATEGORYWISE,REGIONWISE ` in Request Body indicator
+
 ```json
 {
     "monthly_trend": [
@@ -229,66 +224,6 @@ Below is a list of available API endpoints.
     "errMsg": ""
 }
 ```
-
-` Revenue By Category = 'category'` 
-```json
-{
-    "status": "S",
-    "msg": "",
-    "total_revenue": 0,
-    "revenue_by_product": null,
-    "revenue_by_category": [
-        {
-            "Category": "Clothing",
-            "Total_revenue": 369.54
-        },
-        {
-            "Category": "Electronics",
-            "Total_revenue": 3351.68
-        },
-        {
-            "Category": "Shoes",
-            "Total_revenue": 1115.8
-        }
-    ],
-    "revenue_by_region": null
-}
-```
-
-
-` Revenue By region = 'region'` 
-
----
-```json
-{
-    "status": "S",
-    "msg": "",
-    "total_revenue": 0,
-    "revenue_by_product": null,
-    "revenue_by_category": null,
-    "revenue_by_region": [
-        {
-            "Region_name": "North America",
-            "Total_revenue": 1463.48
-        },
-        {
-            "Region_name": "Europe",
-            "Total_revenue": 2628
-        },
-        {
-            "Region_name": "Asia",
-            "Total_revenue": 5605.44
-        },
-        {
-            "Region_name": "South America",
-            "Total_revenue": 376
-        }
-    ]
-}
-```
-
-
-
 ### ❌ Failure Response Format (Validation or User Error)
 
 ```json
