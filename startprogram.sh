@@ -34,8 +34,8 @@ fi
 cd "$WORKDIR"
 
 #step 5 : Initialize and mod 
-echo  "create a go mod file"
-go mod init "$PROJECTNAME"
+#echo  "create a go mod file"
+#go mod init "$PROJECTNAME"
 
 # Step 4: Initialize and install dependencies
 echo "📦 Running go mod tidy..."
